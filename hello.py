@@ -10,6 +10,8 @@ from wtforms.validators import DataRequired
 import os
 from flask_sqlalchemy import SQLAlchemy
 
+from flask_migrate import Migrate
+
 app = Flask(__name__)
 bootstrap = Bootstrap(app)
 moment = Moment(app)
@@ -20,6 +22,8 @@ app.config['SQLALCHEMY_DATABASE_URI'] =\
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
+
+migrate = Migrate(app, db)
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
